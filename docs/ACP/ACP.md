@@ -455,11 +455,6 @@ The full JSON schema for ACP includes agent-specific definitions:
 
 This appendix contains additional examples of ACP messages to illustrate the protocol in action.
 
-
-
-
-> ⚠️ TBD: NLIP connection: The following examples demonstrate ACP messages that incorporate NLIP compatibility features.
-
 ### Agent Registration Response
 
 ```json
@@ -541,8 +536,8 @@ This appendix contains additional examples of ACP messages to illustrate the pro
 
 ### NLIP-Compatible Agent Message
 
-> ⚠️ TBD: NLIP connection: Example of an ACP message that follows NLIP format patterns:
+> ⚠️ TBD: NLIP connection: ACP message that follows NLIP format patterns
 
 ### NLIP Redirect Control Flow in ACP
 
-> ⚠️ TBD: NLIP connection: Example of ACP implementing NLIP's redirect control flow:
+> ⚠️ TBD: NLIP connection: ACP implementing NLIP's redirect control flow
