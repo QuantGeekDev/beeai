@@ -8,7 +8,7 @@
 
 The Agent Context Protocol (ACP) enables rich agent-to-agent communication and coordination in multi-agent systems. It provides a comprehensive framework for agent discovery, evaluation, coordination, and monitoring while maintaining compatibility with Model Contex Protocol (MCP).
 
-> ⚠️TBD: NLIP connection: ACP complements the Natural Language Interaction Protocol (NLIP) by focusing on agent-to-agent communication while NLIP primarily addresses natural language interfaces between humans and AI systems. Where NLIP standardizes a common chat application to replace multiple mobile apps, ACP standardizes agent coordination mechanisms that can work behind the scenes of these interfaces.
+> ⚠️TBD: NLIP connection: ACP complements the Natural Language Interaction Protocol (NLIP) by focusing on agent-to-agent communication while NLIP primarily addresses natural language interfaces between humans and AI systems. Where NLIP standardizes a common chat application to replace multiple mobile apps, ACP standardizes agent coordination mechanisms that can work behind the scenes of these interfaces. https://github.com/nlip-project/documents/blob/main/NLIP_Specification.pdf
 
 ### Key Features
 
