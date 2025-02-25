@@ -8,6 +8,8 @@
 
 The Agent Context Protocol (ACP) enables rich agent-to-agent communication and coordination in multi-agent systems. It provides a comprehensive framework for agent discovery, evaluation, coordination, and monitoring while maintaining compatibility with Model Contex Protocol (MCP).
 
+> ⚠️TBD: NLIP connection: ACP complements the Natural Language Interaction Protocol (NLIP) by focusing on agent-to-agent communication while NLIP primarily addresses natural language interfaces between humans and AI systems. Where NLIP standardizes a common chat application to replace multiple mobile apps, ACP standardizes agent coordination mechanisms that can work behind the scenes of these interfaces.
+
 ### Key Features
 
 - **Agent Discovery & Registration**: Mechanism for agents to announce their presence, capabilities, and performance metrics
@@ -27,6 +29,8 @@ ACP is built on the JSON-RPC 2.0 message format, providing a standardized approa
 - **Notification Support**: One-way messages for status updates
 - **Error Handling**: Standardized error reporting
 - **Metadata Extensions**: Support for custom data in message headers
+
+> ⚠️ TBD: NLIP connection: Like NLIP, ACP builds on top of HTTPS and JSON for message exchange. ACP adopts NLIP's pattern of format/subformat/content fields to maintain consistency across both protocols. This harmonization ensures systems can implement both protocols with minimal duplication of parsing logic.
 
 ## 3. Core Components
 
@@ -92,6 +96,8 @@ Agents announce their presence using structured registration messages that inclu
 ### 3.2 Agent Communication
 
 ACP provides rich messaging capabilities with metadata for traceability and correlation:
+
+> ⚠️ TBD: NLIP connection: ACP messages can be extended to support NLIP's multi-modality capabilities (text, binary, location, structured). This enables agents to exchange rich media content following NLIP patterns while maintaining ACP's coordination capabilities. Additionally, ACP adopts NLIP's "conversation ID" concept (through tokens) to maintain coherent multi-message exchanges.
 
 ```json
 {
@@ -250,6 +256,8 @@ Tool definitions follow standard schema:
 
 ACP supports agent-to-agent LLM interactions through a standardized sampling mechanism:
 
+NLIP connection: ACP adopts NLIP's redirect and redirect_response control messages for managing LLM interactions in a federated environment. This allows ACP to leverage NLIP's mechanisms for API key management, LLM service discovery, and response aggregation. Both protocols can benefit from a unified approach to LLM interaction with proper attribution and security.
+
 ```json
 {
   "id": "sample-req",
@@ -320,6 +328,11 @@ Key compatibility features:
 
 When interacting with MCP-only systems, ACP implementations can fall back to basic functionality while still leveraging the enhanced capabilities when available.
 
+### 6.2 Natural Language Interaction Protocol (NLIP) Compatibility
+
+> ⚠️TBD: **NLIP connection**: ACP and NLIP complement each other in creating a comprehensive communication ecosystem. The following aspects ensure compatibility between the protocols:
+
+
 ## 7. Security Considerations
 
 ACP implements a robust security model:
@@ -355,13 +368,19 @@ Agents SHOULD negotiate the highest mutually supported version during initializa
 
 ACP is designed for expansion, with planned future enhancements including:
 
-- **Federation**: Support for cross-organization agent discovery and cooperation, having in consideration hybrid modes (local+cloud execution modes)
+- **Federation**: Support for cross-organization agent discovery and cooperation, having in consideration hybrid modes (local+cloud execution modes) and  Hierarchical Agent Coordination ( collaborative multi-agent federated reasoning )
 - **Learning**: Framework for continuous improvement of agent performance through feedback loops
 - **Specialized Domains**: Extensions for domain-specific agent capabilities (healthcare, finance, etc.)
 - **Collective Intelligence**: Mechanisms for agents to collaborate on complex tasks
 - **Autonomous Workflows**: Advanced orchestration of agent sequences
-- **Advanced Security**: Enhanced verification and validation mechanisms
+- **Advanced Security**: Enhanced verification and validation mechanisms, Identity & Trust Management Across Agents (agent reputation tracking)
 - **Standardized LLM Integration**: Richer interactions with language models
+- **Multi-Modality Support for Agent Communication** : Extend ACP’s messaging to support multi-modal agent-to-agent communication
+- **Policy Exchange & Negotiation**: policy exchange mechanism allowing agents to negotiate access control, data-sharing policies, and compliance standards.
+
+
+> ⚠️TBD: **NLIP connection**: Future development of ACP will closely align with NLIP's evolution to create a unified communication ecosystem:
+
 
 ## Appendix A: JSON Schema
 
@@ -435,6 +454,11 @@ The full JSON schema for ACP includes agent-specific definitions:
 ## Appendix B: Message Examples
 
 This appendix contains additional examples of ACP messages to illustrate the protocol in action.
+
+
+
+
+> ⚠️ TBD: NLIP connection: The following examples demonstrate ACP messages that incorporate NLIP compatibility features.
 
 ### Agent Registration Response
 
@@ -513,3 +537,12 @@ This appendix contains additional examples of ACP messages to illustrate the pro
   }
 }
 ```
+
+
+### NLIP-Compatible Agent Message
+
+> ⚠️ TBD: NLIP connection: Example of an ACP message that follows NLIP format patterns:
+
+### NLIP Redirect Control Flow in ACP
+
+> ⚠️ TBD: NLIP connection: Example of ACP implementing NLIP's redirect control flow:
