@@ -1,8 +1,8 @@
 
 # Agent Context Protocol (ACP)
 
-**Specification Version**: 0.1
-**Last Updated**: 2025-02-25
+- **Specification Version**: 0.1
+- **Last Updated**: 2025-02-25
 
 ## 1. Introduction
 
@@ -28,75 +28,6 @@ ACP is built on the JSON-RPC 2.0 message format, providing a standardized approa
 - **Error Handling**: Standardized error reporting
 - **Metadata Extensions**: Support for custom data in message headers
 
-### 2.2 Initialization and Capability Negotiation
-
-Agents discover each other's capabilities through an initialization handshake:
-
-```json
-{
-  "id": "init-1",
-  "jsonrpc": "2.0",
-  "method": "initialize",
-  "params": {
-    "capabilities": {
-      "agent": {
-        "discovery": true,
-        "evaluation": true,
-        "coordination": true,
-        "monitoring": true
-      },
-      "resources": {
-        "listChanged": true,
-        "subscribe": true
-      },
-      "tools": {
-        "listChanged": true
-      },
-      "prompts": {
-        "listChanged": true
-      },
-      "sampling": {}
-    },
-    "clientInfo": {
-      "name": "example-acp-client",
-      "version": "1.0.0"
-    },
-    "protocolVersion": "ACP-1.2"
-  }
-}
-```
-
-The server's initialization response:
-
-```json
-{
-  "id": "init-1",
-  "jsonrpc": "2.0",
-  "result": {
-    "capabilities": {
-      "agent": {
-        "discovery": true,
-        "evaluation": true,
-        "coordination": true,
-        "monitoring": true
-      },
-      "resources": {
-        "listChanged": true,
-        "subscribe": true
-      },
-      "tools": {
-        "listChanged": true
-      }
-    },
-    "protocolVersion": "ACP-1.2",
-    "serverInfo": {
-      "name": "example-acp-server",
-      "version": "1.0.0"
-    }
-  }
-}
-```
-
 ## 3. Core Components
 
 ### 3.1 Agent Discovery & Registration
@@ -118,39 +49,39 @@ Agents announce their presence using structured registration messages that inclu
         "specializations": ["nlp", "data-analysis"],
         "protocols": ["ACP-1.2"]
       },
-      "meta": {
+      "meta": { // TBD
         "version": "1.1.0",
         "provider": "organization-id",
         "created": "2025-02-21T12:00:00Z",
         "lastActive": "2025-02-21T12:00:00Z"
       },
-      "auth": {
+      "auth": { // TBD
         "token": "secure-auth-token",
         "signature": "digital-signature-string"
       },
-      "evaluation": {
+      "evaluation": { // TBD
         "qualityScore": 8.5,
         "evaluationCount": 120,
         "lastEvaluated": "2025-02-21T11:50:00Z",
         "reviews": ["Consistent and accurate", "Fast execution"]
       },
-      "costMetrics": {
+      "costMetrics": { // TBD
         "costPerToken": 0.0005,
         "averageSpeed": 150,
         "averageExecutionTime": 2.5
       },
-      "dependencies": [
+      "dependencies": [ // TBD
         {
           "name": "Dependency A",
           "type": "service",
           "impact": 0.7,
-          "securityRating": 9
+          // "securityRating": 9 // TBD
         },
         {
           "name": "Tool B",
           "type": "tool",
-          "impact": 0.5,
-          "securityRating": 8
+          // "impact": 0.5, // TBD
+          // "securityRating": 8 // TBD
         }
       ]
     }
@@ -203,7 +134,7 @@ Task delegation uses enhanced metadata for performance-based routing:
 {
   "id": "task-001",
   "jsonrpc": "2.0",
-  "method": "agent/delegate",
+  "method": "agent/delegate", // TBD
   "params": {
     "task": {
       "id": "task-001",
@@ -225,14 +156,14 @@ Task delegation uses enhanced metadata for performance-based routing:
 }
 ```
 
-### 3.4 Heartbeat and Monitoring
+### 3.4 Monitoring lifecycle
 
 ACP adds heartbeat notifications for availability tracking:
 
 ```json
 {
   "jsonrpc": "2.0",
-  "method": "agent/heartbeat",
+  "method": "agent/heartbeat", // TBD
   "params": {
     "agentId": "unique-agent-id",
     "status": "active"
@@ -336,7 +267,7 @@ ACP supports agent-to-agent LLM interactions through a standardized sampling mec
     ],
     "maxTokens": 1000,
     "temperature": 0.7,
-    "modelPreferences": {
+    "modelPreferences": { // TBD
       "intelligencePriority": 0.8,
       "speedPriority": 0.6,
       "costPriority": 0.4
@@ -395,9 +326,9 @@ ACP implements a robust security model:
 
 ### 7.1 User Consent and Control
 
-- All agent operations requiring privileged access MUST obtain explicit user consent
-- Users MUST be able to review and approve task delegations
+- All agent operations requiring privileged access MUST obtain explicit user consent in some point of the interaction (starting, middle or ending)
 - Users MUST be able to revoke access for any agent
+- Users MUST be able to review and approve task delegations
 
 ### 7.2 Data Privacy
 
@@ -413,18 +344,18 @@ ACP implements a robust security model:
 
 ## 8. Protocol Versioning
 
-ACP versions are specified as "ACP-{major}.{minor}" (e.g., "ACP-1.2"). The protocol follows semantic versioning:
+ACP versions are specified as "ACP-{major}.{minor}" (e.g., "ACP-1.0"). The protocol follows semantic versioning:
 
 - Major version increments for breaking changes
 - Minor version increments for backward-compatible enhancements
 
-Clients and servers SHOULD negotiate the highest mutually supported version during initialization.
+Agents SHOULD negotiate the highest mutually supported version during initialization.
 
 ## 9. Future Directions
 
 ACP is designed for expansion, with planned future enhancements including:
 
-- **Federation**: Support for cross-organization agent discovery and cooperation
+- **Federation**: Support for cross-organization agent discovery and cooperation, having in consideration hybrid modes (local+cloud execution modes)
 - **Learning**: Framework for continuous improvement of agent performance through feedback loops
 - **Specialized Domains**: Extensions for domain-specific agent capabilities (healthcare, finance, etc.)
 - **Collective Intelligence**: Mechanisms for agents to collaborate on complex tasks
